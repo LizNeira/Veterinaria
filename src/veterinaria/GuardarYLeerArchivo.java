@@ -18,7 +18,6 @@ public class GuardarYLeerArchivo implements Serializable
         this.nombreArchivo = "veterinaria.txt";
     }
   
-    
     public Sistema deSerializar() throws IOException, ClassNotFoundException 
      {
         FileInputStream f = new FileInputStream(this.nombreArchivo);

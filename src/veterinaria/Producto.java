@@ -1,8 +1,10 @@
 
 package veterinaria;
 
+import java.io.Serializable;
 
-public class Producto 
+
+public class Producto implements Serializable
 {
     private final String descripcion;
     private final Double precio;
