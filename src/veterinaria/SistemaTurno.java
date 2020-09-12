@@ -17,14 +17,21 @@ public class SistemaTurno implements Serializable
     {
         return listaTurno;
     }
+     public ArrayList<Turno> getSistemaTurno()
+    {
+        return listaTurno;
+    }
+    
 
     public void mostrarListaTurno()
     {
         for (int i = 0; i < listaTurno.size(); i++) 
         {
             EntradaYSalida.mostrarMensaje("\n"+"["+(i+1)+"] "
-                    +"||Nombre: "+listaTurno.get(i).getNombre()
-                    +"||Tipo: "+listaTurno.get(i).getTipo());
+                    +"||Nombre del duenio: " + listaTurno.get(i).getDuenio().getNombre()
+                    +"||Telefono: " + listaTurno.get(i).getDuenio().getNumeroContacto()
+                    +"||Nombre del animal: " + listaTurno.get(i).getAnimal().getNombre()
+                    +"||Tipo de animal: " + listaTurno.get(i).getAnimal().getTipo());
         }
         
     }

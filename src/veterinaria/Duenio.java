@@ -3,24 +3,29 @@ package veterinaria;
 
 public class Duenio 
 {
-    private final String nombre;
-    private final String numeroContacto;
+    private  String nombre;
+    private  String numeroContacto;
 
-    public Duenio(String nombre, String numeroContacto) {
+    public void setNombre(String nombre)
+    {
         this.nombre = nombre;
-        this.numeroContacto = numeroContacto;
     }
-
     
-    
-    public String getNombre() {
+    public String getNombre()
+    {
         return nombre;
     }
 
-    public String getNumeroContacto() {
+
+    public void setNumeroContacto(String numeroContacto)
+    {
+        this.numeroContacto = numeroContacto;
+    }
+
+    public String getNumeroContacto() 
+    {
         return numeroContacto;
     }
-    
-    
+     
     
 }

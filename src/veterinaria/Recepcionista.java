@@ -2,6 +2,8 @@
 package veterinaria;
 
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Recepcionista extends Empleado implements Serializable
 {
@@ -21,7 +23,7 @@ public class Recepcionista extends Empleado implements Serializable
                        
            do 
            {
-                mensaje = "\n-----Menu Recepcionista-----\n"
+                mensaje = "\n\n-----Menu Recepcionista-----\n"
                          +"[1] Dar turnos\n"
                          +"[2] Vender Regulares\n"
                          +"[3]Salir\n"
@@ -32,7 +34,7 @@ public class Recepcionista extends Empleado implements Serializable
                 {
                     case 1:
                            darTurno(sistema);
-                        
+                           sistema.getSistemaTurno().mostrarListaTurno();
                        break;
                     case 2:
                            venderRegular(sistema);
@@ -55,6 +57,8 @@ public class Recepcionista extends Empleado implements Serializable
         String numeroContacto;
         String nombreAnimal;
         String tipoAnimal;
+        FactoriaTurno factoriaTurno = FactoriaTurno.getInstancia();
+        
        do
         {
             nombreDuenio = EntradaYSalida.leerCadena("\nIngrese el nombre: ");
@@ -77,14 +81,23 @@ public class Recepcionista extends Empleado implements Serializable
                         + "Ingrese el tipo de animal:");
             }
             
-           nombreAnimal = EntradaYSalida.leerCadena("Ingrese el tipo de animal: ");
+           nombreAnimal = EntradaYSalida.leerCadena("Ingrese el nombre del animal: ");
             while (nombreAnimal.isEmpty())
             {
                 nombreAnimal = EntradaYSalida.leerCadena("ERROR: el tipo de animal no puede ser nulo "
                         + "Ingrese el tipo de animal:");
             }
- 
-      //     sistema.getSistemaProducto().getListaRegular().add(new Medicamento(descripcion,precio));
+            
+            try 
+            {
+                Animal animal = factoriaTurno.crearAnimal(nombreAnimal, tipoAnimal);
+                Duenio duenio = factoriaTurno.crearDuenio("Duenio" ,nombreDuenio, numeroContacto);
+                sistema.getSistemaTurno().getListaTurno().add(new Turno(animal,duenio));
+            } catch (ReflectiveOperationException ex) {
+                Logger.getLogger(Recepcionista.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         
+                
             guardarYLeerArchivo.guardarArchivo(sistema);
             EntradaYSalida.mostrarMensaje("\nSe ha dado el turno\n");
             opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");

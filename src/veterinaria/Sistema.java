@@ -7,11 +7,14 @@ public class Sistema  implements Serializable
 {
     private SistemaEmpleado sistemaEmpleado;
     private final SistemaProducto sistemaProducto;
+    private final SistemaTurno sistemaTurno;
+    
     
     public Sistema()
     {
         sistemaEmpleado = new SistemaEmpleado();
         sistemaProducto = new SistemaProducto();
+        sistemaTurno = new SistemaTurno();
     }
 
     public SistemaEmpleado getSistemaEmpleado()
@@ -28,6 +31,11 @@ public class Sistema  implements Serializable
     public SistemaProducto getSistemaProducto()
     {
         return sistemaProducto;
+    }
+    
+    public SistemaTurno getSistemaTurno()
+    {
+        return sistemaTurno;
     }
 
 }

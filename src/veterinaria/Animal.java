@@ -8,14 +8,9 @@ public class Animal implements Serializable
     private  String nombre;
     private  String tipo;
 
-    public Animal(String nombre, String tipo) {
-        this.nombre = nombre;
-        this.tipo = tipo;
-    }
-    
-    
-
-    public void setNombre(String nombre) {
+      
+    public void setNombre(String nombre) 
+    {
         this.nombre = nombre;
     }
     
@@ -24,7 +19,8 @@ public class Animal implements Serializable
         return nombre;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(String tipo) 
+    {
         this.tipo = tipo;
     }
 
@@ -33,9 +29,5 @@ public class Animal implements Serializable
         return tipo;
     }
     
-     public static Animal obtenerAnimal()
-    {
-        return new Animal();
-    }
-    
+     
 }
