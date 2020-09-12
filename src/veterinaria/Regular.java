@@ -1,7 +1,9 @@
 package veterinaria;
 
+import java.io.Serializable;
 
-public class Regular extends Producto
+
+public class Regular extends Producto implements Serializable
 {
 
     public Regular(String descripcion, Double precio) 
