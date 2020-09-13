@@ -6,18 +6,14 @@ public class Controlador implements Serializable
 {
      private String usuario;
      private String contrasenia;
+     private Veterinaria veterinaria;
      
-    public Controlador()
-    {
-        
-    }
-    
     public void ejecutar() 
     {   
            GuardarYLeerArchivo guardarYLeerArchivo = new GuardarYLeerArchivo();
            Sistema sistema = new Sistema();
-
-        boolean seguir;
+           veterinaria = Veterinaria.getInstancia();
+           boolean seguir;
 
         try 
         {
@@ -41,9 +37,7 @@ public class Controlador implements Serializable
                         + "+Ingrese su contraseña:");
             }
 
-           sistema.getSistemaEmpleado().getlistaEmpleado().add(new Administrador(usuario, contrasenia));
-           guardarYLeerArchivo.guardarArchivo(sistema);
-
+            veterinaria.setEmpleado(new Administrador(usuario, contrasenia), sistema);
             EntradaYSalida.mostrarMensaje("El arranque ha sido exitoso. Ahora se debe reiniciar el sistema...");
 
             seguir = false;     
@@ -68,7 +62,7 @@ public class Controlador implements Serializable
             }
 
             dato = usuario+":"+contrasenia; 
-            Empleado empleado = sistema.getSistemaEmpleado().buscarEmpleado(dato);
+            Empleado empleado = veterinaria.getBuscarEmpleado(dato, sistema);
 
             if (null == empleado)
             {

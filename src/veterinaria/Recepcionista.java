@@ -9,10 +9,12 @@ public class Recepcionista extends Empleado implements Serializable
 {
     
      private GuardarYLeerArchivo guardarYLeerArchivo = new GuardarYLeerArchivo();
+     private Veterinaria veterinaria;
     
      public Recepcionista(String usuario, String contrasenia)
      {
        super(usuario, contrasenia);
+       veterinaria = Veterinaria.getInstancia();
      }   
 
      @Override
@@ -108,22 +110,20 @@ public class Recepcionista extends Empleado implements Serializable
     private void venderRegular(Sistema sistema)
     {
         String opcion;
-        int indicePedido=0;
+        int indiceProducto;
      do 
       {       
         EntradaYSalida.mostrarMensaje("\n---Lista de Regulares---\n");
-        sistema.getSistemaProducto().mostrarListaRegular();
-        indicePedido = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
-        while(indicePedido < 0 || indicePedido > sistema.getSistemaProducto().getListaRegular().size())
+        veterinaria.getMostrarListaRegular(sistema);
+        indiceProducto = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
+        
+        while(indiceProducto < 0 || indiceProducto > veterinaria.getCantidadProductoRegular(sistema))
         {
-                  indicePedido = EntradaYSalida.leerEntero("\nOpcion no valida"
+                  indiceProducto = EntradaYSalida.leerEntero("\nOpcion no valida"
                   + "\nIngrese nuevamente: ");
         }
         
-        Producto productoSeleccionado = sistema.getSistemaProducto().getListaMedicamento().get(indicePedido -1);
-        sistema.getSistemaProducto().getListaRegularVendido().add(productoSeleccionado);
-        sistema.getSistemaProducto().getListaMedicamento().remove(indicePedido -1);
-        guardarYLeerArchivo.guardarArchivo(sistema);
+         veterinaria.venderProductoRegular(indiceProducto, sistema);
         opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
       
         } while( opcion.equals("s") || opcion.equals("S"));

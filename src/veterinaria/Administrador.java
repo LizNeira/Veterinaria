@@ -6,10 +6,12 @@ import java.io.Serializable;
 public class Administrador extends Empleado implements Serializable
 {    
    private GuardarYLeerArchivo guardarYLeerArchivo = new GuardarYLeerArchivo();
+   private Veterinaria veterinaria;
     
     public Administrador(String usuario, String contrasenia)
     {
         super(usuario, contrasenia);
+        veterinaria = Veterinaria.getInstancia();
     }
    
     @Override
@@ -64,8 +66,6 @@ public class Administrador extends Empleado implements Serializable
         return seguir;
 
     }
-
- 
     
     private void altaVeterinario(Sistema sistema)
     {
@@ -96,7 +96,7 @@ public class Administrador extends Empleado implements Serializable
             }
             
             dato = usuario+":"+contrasenia;
-            empleado = sistema.getSistemaEmpleado().buscarEmpleado(dato);
+            empleado = veterinaria.getBuscarEmpleado(dato, sistema);
             
             if (empleado != null)
             {
@@ -104,8 +104,7 @@ public class Administrador extends Empleado implements Serializable
             } 
             else
             {
-                sistema.getSistemaEmpleado().getlistaEmpleado().add(new Veterinario(usuario, contrasenia,especialidad));
-                guardarYLeerArchivo.guardarArchivo(sistema);
+                veterinaria.setEmpleado(new Veterinario(usuario, contrasenia,especialidad), sistema);
                 EntradaYSalida.mostrarMensaje("\nSe ha incorporado VETERINARIO al sistema\n");
             }
             
@@ -137,7 +136,7 @@ public class Administrador extends Empleado implements Serializable
             }
             
             dato = usuario+":"+contrasenia;
-            empleado = sistema.getSistemaEmpleado().buscarEmpleado(dato);
+            empleado = veterinaria.getBuscarEmpleado(dato, sistema);
             
             if (empleado != null)
             {
@@ -145,10 +144,10 @@ public class Administrador extends Empleado implements Serializable
             } 
             else
             {
-                sistema.getSistemaEmpleado().getlistaEmpleado().add(new Recepcionista(usuario, contrasenia));
-                guardarYLeerArchivo.guardarArchivo(sistema);
-                EntradaYSalida.mostrarMensaje("\nSe ha incorporado RECEPCIONISTA al sistema\n");
+              veterinaria.setEmpleado(new Recepcionista(usuario, contrasenia), sistema);
+              EntradaYSalida.mostrarMensaje("\nSe ha incorporado RECEPCIONISTA al sistema\n");
             }
+            
             opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 
         } while (opcion.equals("s") || opcion.equals("S"));
@@ -201,9 +200,8 @@ public class Administrador extends Empleado implements Serializable
                 precio = EntradaYSalida.leerDouble("ERROR: precio invalido "
                         + "Ingrese el precio:");
             }
- 
-            sistema.getSistemaProducto().getListaRegular().add(new Regular(descripcion,precio));
-            guardarYLeerArchivo.guardarArchivo(sistema);
+
+            veterinaria.setProductoRegular(new Regular(descripcion,precio), sistema);
             EntradaYSalida.mostrarMensaje("\nEl producto se ha dado de alta\n");
             opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 
@@ -232,8 +230,7 @@ public class Administrador extends Empleado implements Serializable
                         + "Ingrese el precio:");
             }
  
-            sistema.getSistemaProducto().getListaMedicamento().add(new Medicamento(descripcion,precio));
-            guardarYLeerArchivo.guardarArchivo(sistema);
+            veterinaria.setProductoMedicamento(new Medicamento(descripcion,precio), sistema);
             EntradaYSalida.mostrarMensaje("\nEl producto se ha dado de alta\n");
             opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 
@@ -244,17 +241,15 @@ public class Administrador extends Empleado implements Serializable
     {
         
       EntradaYSalida.mostrarMensaje("\n---lista de Medicamentos---\n");
-      sistema.getSistemaProducto().mostrarListaMedicamento();
+      veterinaria.getMostrarListaMedicamento(sistema);
       EntradaYSalida.leerCadena("\n\nPresione cualquier tecla para salir ");
-      guardarYLeerArchivo.guardarArchivo(sistema);      
     }
     private void listaRegular(Sistema sistema)
     {
         
       EntradaYSalida.mostrarMensaje("\n---lista de Regulares---\n");
-      sistema.getSistemaProducto().mostrarListaRegular();
+      veterinaria.getMostrarListaRegular(sistema);
       EntradaYSalida.leerCadena("\n\nPresione cualquier tecla para salir ");
-      guardarYLeerArchivo.guardarArchivo(sistema);      
     }
     
     private void listaMedicamentoVendido(Sistema sistema)
@@ -269,7 +264,6 @@ public class Administrador extends Empleado implements Serializable
             i++;
         }
         EntradaYSalida.leerCadena("\nPresione cualquier tecla para salir ");
-        guardarYLeerArchivo.guardarArchivo(sistema);
     }
     
     private void listaRegularVendido(Sistema sistema)
@@ -284,7 +278,6 @@ public class Administrador extends Empleado implements Serializable
             i++;
         }
         EntradaYSalida.leerCadena("\nPresione cualquier tecla para salir ");
-        guardarYLeerArchivo.guardarArchivo(sistema);
     }
 
 }

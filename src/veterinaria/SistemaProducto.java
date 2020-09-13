@@ -55,6 +55,5 @@ public class SistemaProducto implements Serializable
                     +"||Descripcion: "+listaRegular.get(i).getDescripcion()
                     +"||Precio: "+listaRegular.get(i).getprecio());
         }
-        
     } 
 }
