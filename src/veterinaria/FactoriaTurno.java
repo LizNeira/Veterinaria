@@ -20,29 +20,29 @@ public class FactoriaTurno
     }
 
     
-    public Animal crearAnimal(final String nombre, final String tipo) throws ReflectiveOperationException
+    public Animal crearAnimal(String nombreClase,final String nombreAnimal, final String tipoAnimal) throws ReflectiveOperationException
 	{
 	    Animal animal = null;
 	
 	    try
 	    {
 	        animal = (Animal) Class.forName(factoria.getClass().getPackage().getName()
-	                + "." + nombre).getDeclaredConstructor().newInstance();  
+	                + "." + nombreClase).getDeclaredConstructor().newInstance();  
 	    }
 	    catch(ClassNotFoundException | InstantiationException | 
 	            IllegalAccessException e)
 	    {
-	        EntradaYSalida.mostrarMensaje("Error: La clase " + nombre + " no existe ");
+	        EntradaYSalida.mostrarMensaje("Error: La clase " + nombreAnimal + " no existe ");
 	        System.err.println(e);
 	    }
 	
 	    if(null == animal)
-               throw new IllegalAccessException(nombre);
+               throw new IllegalAccessException(nombreAnimal);
         
             else
             {
-               animal.setNombre(nombre);
-               animal.setTipo(tipo);
+               animal.setNombre(tipoAnimal);
+               animal.setTipo(nombreAnimal);
             }
           
             return animal;

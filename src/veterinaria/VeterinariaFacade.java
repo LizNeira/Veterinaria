@@ -11,8 +11,11 @@ public interface VeterinariaFacade
     public void setProductoMedicamento(Medicamento medicamento, Sistema sistema);
     public void getMostrarListaMedicamento(Sistema sistema);
     public void getMostrarListaRegular(Sistema sistema);
+    public void getMostrarListaTurno(Sistema sistema);
+    public void getMostrarListaRegularVendido(Sistema sistema);
+    public void getMostrarListaMedicamentoVendido(Sistema sistema);
     public ArrayList<Producto> getListaMedicamentoVendido(Sistema sistema);
-    public ArrayList<Producto> getListaMedicamentoRegular(Sistema sistema);
+    public ArrayList<Producto> getListaRegularVendido(Sistema sistema);
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Recepcionista">

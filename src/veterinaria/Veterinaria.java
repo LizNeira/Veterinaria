@@ -68,6 +68,23 @@ public class Veterinaria implements VeterinariaFacade, Serializable
     {
        sistema.getSistemaProducto().mostrarListaRegular(); 
     }
+     @Override
+    public void getMostrarListaTurno(Sistema sistema) 
+    {
+       sistema.getSistemaTurno().mostrarListaTurno(); 
+    }
+    
+    @Override
+    public void getMostrarListaRegularVendido(Sistema sistema)
+    {
+        sistema.getSistemaProducto().mostrarListaRegularVendido();
+    }
+    
+     @Override
+    public void getMostrarListaMedicamentoVendido(Sistema sistema)
+    {
+        sistema.getSistemaProducto().mostrarListaMedicamentoVendido();
+    }
 
     @Override
     public ArrayList<Producto> getListaMedicamentoVendido(Sistema sistema) 
@@ -76,7 +93,7 @@ public class Veterinaria implements VeterinariaFacade, Serializable
     }
 
     @Override
-    public ArrayList<Producto> getListaMedicamentoRegular(Sistema sistema)
+    public ArrayList<Producto> getListaRegularVendido(Sistema sistema)
     {
       return sistema.getSistemaProducto().getListaRegularVendido();
     }
@@ -84,14 +101,14 @@ public class Veterinaria implements VeterinariaFacade, Serializable
 
     //<editor-fold defaultstate="collapsed" desc="Recepcionista">
     @Override
-    public void setTurno(String nombreAnimal, String tipoAnimal, String nombreDuenio, 
-                         String numeroContacto, Sistema sistema) 
+    public void setTurno(String nombreDuenio, String numeroContacto, String nombreAnimal, 
+                         String tipoAnimal, Sistema sistema) 
     {
         factoriaTurno = FactoriaTurno.getInstancia();
         
         try 
         {
-           Animal animal = factoriaTurno.crearAnimal(nombreAnimal, tipoAnimal);
+           Animal animal = factoriaTurno.crearAnimal("Animal", nombreAnimal,tipoAnimal);
            Duenio duenio = factoriaTurno.crearDuenio("Duenio" ,nombreDuenio, numeroContacto);
            sistema.getSistemaTurno().getListaTurno().add(new Turno(animal, duenio));
         } 
@@ -109,12 +126,13 @@ public class Veterinaria implements VeterinariaFacade, Serializable
     
     @Override //Usado por la clase Veterinario también.
     public void venderProductoRegular(int indiceProducto, Sistema sistema)
-    {
+    {  
       Producto productoSeleccionado;
       productoSeleccionado = sistema.getSistemaProducto().getListaRegular().get(indiceProducto -1);
       sistema.getSistemaProducto().getListaRegularVendido().add(productoSeleccionado);
       sistema.getSistemaProducto().getListaRegular().remove(indiceProducto - 1); 
       guardarYLeerArchivo.guardarArchivo(sistema);
+        
     }
 
     //</editor-fold>
@@ -124,7 +142,7 @@ public class Veterinaria implements VeterinariaFacade, Serializable
     public void venderProductoMedicamento(int indiceProducto, Sistema sistema) 
     {
       Producto productoSeleccionado;
-      productoSeleccionado = sistema.getSistemaProducto().getListaMedicamento().get(indiceProducto -1);
+      productoSeleccionado = sistema.getSistemaProducto().getListaMedicamento().get(indiceProducto -1);      
       sistema.getSistemaProducto().getListaMedicamentoVendido().add(productoSeleccionado);
       sistema.getSistemaProducto().getListaMedicamento().remove(indiceProducto - 1);
       guardarYLeerArchivo.guardarArchivo(sistema);

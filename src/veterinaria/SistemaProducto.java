@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class SistemaProducto implements Serializable
 {
-    private final ArrayList<Producto> listaMedicamento;
-    private final ArrayList<Producto> listaRegular;
+    private ArrayList<Producto> listaMedicamento;
+    private ArrayList<Producto> listaRegular;
     private ArrayList<Producto> listaRegularVendido;
     private ArrayList<Producto> listaMedicamentoVendido;
 
@@ -14,6 +14,8 @@ public class SistemaProducto implements Serializable
     {
        listaMedicamento = new ArrayList<>();
        listaRegular = new ArrayList<>();
+       listaMedicamentoVendido = new ArrayList<>();
+       listaRegularVendido = new ArrayList<>();
     }
 
     public ArrayList<Producto> getListaMedicamento() 
@@ -38,7 +40,9 @@ public class SistemaProducto implements Serializable
     
    
     public void mostrarListaMedicamento()
-    {
+    {  
+        EntradaYSalida.mostrarMensaje("\n---lista de Medicamentos---\n");
+
         for (int i = 0; i < listaMedicamento.size(); i++) 
         {
             EntradaYSalida.mostrarMensaje("\n"+"["+(i+1)+"] "
@@ -49,11 +53,46 @@ public class SistemaProducto implements Serializable
     
     public void mostrarListaRegular()
     {
+        EntradaYSalida.mostrarMensaje("\n---Lista de Regulares---\n");
+
         for (int i = 0; i < listaRegular.size(); i++) 
         {
             EntradaYSalida.mostrarMensaje("\n"+"["+(i+1)+"] "
                     +"||Descripcion: "+listaRegular.get(i).getDescripcion()
                     +"||Precio: "+listaRegular.get(i).getprecio());
         }
-    } 
+
+   } 
+    
+    public void mostrarListaRegularVendido()
+    {
+        int i = 1;
+        
+        EntradaYSalida.mostrarMensaje("\n---Lista de Regulares Vendidos---\n");
+
+        for  (Producto producto : getListaRegularVendido() )
+        {
+            EntradaYSalida.mostrarMensaje("\n"+"["+(i)+"]"
+                                          +"||Preparaciones: " +producto.getDescripcion()
+                                          +"||Bebida: "+producto.getprecio());
+            i++;
+        }
+        EntradaYSalida.leerCadena("\n\nPresione cualquier tecla para salir ");
+    }
+    
+    public void mostrarListaMedicamentoVendido()
+    {
+         int i = 1;
+         
+        EntradaYSalida.mostrarMensaje("\n---Lista de Medicamentos Vendidos---\n");
+
+        for  (Producto producto : getListaMedicamentoVendido() )
+        {
+            EntradaYSalida.mostrarMensaje("\n"+"["+(i)+"]"
+                                          +"||Preparaciones: " +producto.getDescripcion()
+                                          +"||Bebida: "+producto.getprecio());
+            i++;
+        }
+        EntradaYSalida.leerCadena("\n\nPresione cualquier tecla para salir ");
+   }
 }

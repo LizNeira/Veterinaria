@@ -55,7 +55,6 @@ public class Veterinario extends Empleado implements Serializable
         int indicePedido;
      do 
       {       
-        EntradaYSalida.mostrarMensaje("\n---Lista de Medicamentos---\n");
         veterinaria.getMostrarListaMedicamento(sistema);
         indicePedido = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
         
@@ -64,7 +63,7 @@ public class Veterinario extends Empleado implements Serializable
                   indicePedido = EntradaYSalida.leerEntero("\nOpcion no valida"
                   + "\nIngrese nuevamente: ");
         }
-
+          
         veterinaria.venderProductoMedicamento(indicePedido, sistema);
         opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
       

@@ -47,17 +47,19 @@ public class Administrador extends Empleado implements Serializable
                     altaProducto(sistema);
              break;
             case 4:  
-                    listaMedicamento(sistema);
+                    veterinaria.getMostrarListaMedicamento(sistema);
+                    EntradaYSalida.leerCadena("\n\nPresione cualquier tecla para salir ");
              break;
             case 5:  
-                    listaRegular(sistema);
+                    veterinaria.getMostrarListaRegular(sistema);
+                    EntradaYSalida.leerCadena("\n\nPresione cualquier tecla para salir ");
              break;
              
             case 6:  
-                    listaMedicamentoVendido(sistema);
+                    veterinaria.getMostrarListaMedicamentoVendido(sistema);
              break;
             case 7:  
-                    listaRegularVendido(sistema);
+                    veterinaria.getMostrarListaRegularVendido(sistema);
               break;
          }
        
@@ -236,50 +238,7 @@ public class Administrador extends Empleado implements Serializable
 
         } while (opcion.equals("s") || opcion.equals("S"));   
     }
-
-    private void listaMedicamento(Sistema sistema)
-    {
-        
-      EntradaYSalida.mostrarMensaje("\n---lista de Medicamentos---\n");
-      veterinaria.getMostrarListaMedicamento(sistema);
-      EntradaYSalida.leerCadena("\n\nPresione cualquier tecla para salir ");
-    }
-    private void listaRegular(Sistema sistema)
-    {
-        
-      EntradaYSalida.mostrarMensaje("\n---lista de Regulares---\n");
-      veterinaria.getMostrarListaRegular(sistema);
-      EntradaYSalida.leerCadena("\n\nPresione cualquier tecla para salir ");
-    }
-    
-    private void listaMedicamentoVendido(Sistema sistema)
-    {
-     int i = 1;
-        
-        for  (Producto producto : sistema.getSistemaProducto().getListaMedicamentoVendido())
-        {
-            EntradaYSalida.mostrarMensaje("\n"+"["+(i)+"]"
-                                          +"||Preparaciones: " +producto.getDescripcion()
-                                          +"||Bebida: "+producto.getprecio());
-            i++;
-        }
-        EntradaYSalida.leerCadena("\nPresione cualquier tecla para salir ");
-    }
-    
-    private void listaRegularVendido(Sistema sistema)
-    {
-     int i = 1;
-        
-        for  (Producto producto : sistema.getSistemaProducto().getListaRegularVendido())
-        {
-            EntradaYSalida.mostrarMensaje("\n"+"["+(i)+"]"
-                                          +"||Preparaciones: " +producto.getDescripcion()
-                                          +"||Bebida: "+producto.getprecio());
-            i++;
-        }
-        EntradaYSalida.leerCadena("\nPresione cualquier tecla para salir ");
-    }
-
+  
 }
     
 
