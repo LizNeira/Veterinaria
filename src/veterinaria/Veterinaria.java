@@ -68,11 +68,6 @@ public class Veterinaria implements VeterinariaFacade, Serializable
     {
        sistema.getSistemaProducto().mostrarListaRegular(); 
     }
-     @Override
-    public void getMostrarListaTurno(Sistema sistema) 
-    {
-       sistema.getSistemaTurno().mostrarListaTurno(); 
-    }
     
     @Override
     public void getMostrarListaRegularVendido(Sistema sistema)
@@ -110,7 +105,24 @@ public class Veterinaria implements VeterinariaFacade, Serializable
         {
            Animal animal = factoriaTurno.crearAnimal("Animal", nombreAnimal,tipoAnimal);
            Duenio duenio = factoriaTurno.crearDuenio("Duenio" ,nombreDuenio, numeroContacto);
-           sistema.getSistemaTurno().getListaTurno().add(new Turno(animal, duenio));
+           
+            switch (tipoAnimal) 
+            {
+                case "Perro":
+                    sistema.getSistemaTurno().getListaTurnoPerro().add(new Turno(animal, duenio));
+                    break;
+                case "Gato":
+                    sistema.getSistemaTurno().getListaTurnoGato().add(new Turno(animal, duenio));
+                    break;
+                case "Tortuga":
+                    sistema.getSistemaTurno().getListaTurnoTortuga().add(new Turno(animal, duenio));
+                    break;
+                case "Canario":
+                    sistema.getSistemaTurno().getListaTurnoCanario().add(new Turno(animal, duenio));
+                    break;
+                
+            }
+           
         } 
         catch (ReflectiveOperationException ex) 
         {
@@ -148,6 +160,56 @@ public class Veterinaria implements VeterinariaFacade, Serializable
       guardarYLeerArchivo.guardarArchivo(sistema);
     }
     
+    @Override
+    public void atenderAnimal(String especialidad, int indiceTurno, Sistema sistema)
+    {
+        switch (especialidad)
+        {
+            case "Perro":
+                 sistema.getSistemaTurno().getListaTurnoPerro().remove(indiceTurno - 1);
+                 guardarYLeerArchivo.guardarArchivo(sistema);
+              break;
+            case "Gato":
+                 sistema.getSistemaTurno().getListaTurnoGato().remove(indiceTurno - 1);
+                 guardarYLeerArchivo.guardarArchivo(sistema);
+              break;
+            case "Tortuga":
+                 sistema.getSistemaTurno().getListaTurnoTortuga().remove(indiceTurno - 1);
+                 guardarYLeerArchivo.guardarArchivo(sistema);
+              break;
+            case "Canario":
+                sistema.getSistemaTurno().getListaTurnoCanario().remove(indiceTurno - 1);
+                guardarYLeerArchivo.guardarArchivo(sistema);
+              break;
+            
+        }
+    }
+
+    @Override
+    public int getCantidadTurno(String especialidad, Sistema sistema)
+    {
+        int cantidadTurno = 0;
+        
+        switch (especialidad) 
+        {
+            case "Perro":
+                    cantidadTurno = sistema.getSistemaTurno().getListaTurnoPerro().size();
+                break;
+            case "Gato":
+                    cantidadTurno = sistema.getSistemaTurno().getListaTurnoGato().size();               
+                break;
+            case "Canario":
+                    cantidadTurno = sistema.getSistemaTurno().getListaTurnoCanario().size();
+                break;
+            case "Tortuga":
+                    cantidadTurno = sistema.getSistemaTurno().getListaTurnoTortuga().size();
+                break;
+            
+        }
+        
+        return cantidadTurno;
+    }
+    
     @Override ////Usado por la clase Recepcionista también.
     public int getCantidadProductoRegular(Sistema sistema)
     {
@@ -160,6 +222,31 @@ public class Veterinaria implements VeterinariaFacade, Serializable
        return  sistema.getSistemaProducto().getListaMedicamento().size();
     }
     
+    @Override
+    public void getMostrarListaTurnoPerro(Sistema sistema) 
+    {
+       sistema.getSistemaTurno().mostrarListaTurnoPerro(); 
+    }
+    
+    @Override
+    public void getMostrarListaTurnoGato(Sistema sistema) 
+    {
+       sistema.getSistemaTurno().mostrarListaTurnoGato(); 
+    }
+    
+    @Override
+    public void getMostrarListaTurnoTortuga(Sistema sistema) 
+    {
+       sistema.getSistemaTurno().mostrarListaTurnoTortuga(); 
+    }
+    
+    @Override
+    public void getMostrarListaTurnoCanario(Sistema sistema) 
+    {
+       sistema.getSistemaTurno().mostrarListaTurnoCanario(); 
+    }
+    
     //</editor-fold>
+    
     
 }

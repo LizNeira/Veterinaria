@@ -32,6 +32,7 @@ public class Administrador extends Empleado implements Serializable
                     +"[6] Ver Medicamentos Vendidos\n"
                     +"[7] Ver Regulares Vendidos\n"
                     +"[8] Salir\n"
+                    +"[9] Salir del sistema\n"
                     +"Digite una opcion: ";
          opcion = EntradaYSalida.leerEntero(mensaje);
         
@@ -54,16 +55,19 @@ public class Administrador extends Empleado implements Serializable
                     veterinaria.getMostrarListaRegular(sistema);
                     EntradaYSalida.leerCadena("\n\nPresione cualquier tecla para salir ");
              break;
-             
             case 6:  
                     veterinaria.getMostrarListaMedicamentoVendido(sistema);
              break;
             case 7:  
                     veterinaria.getMostrarListaRegularVendido(sistema);
               break;
+            case 9:
+                    seguir = false;
+                    EntradaYSalida.mostrarMensaje("Cerrando sistema...\n");
+             break;
          }
        
-       } while (!(opcion == 8));
+       } while (!(opcion == 8) && !(opcion == 9));
        
         return seguir;
 
@@ -90,13 +94,6 @@ public class Administrador extends Empleado implements Serializable
                         + "+Ingrese su contraseña:");
             }
             
-            especialidad = EntradaYSalida.leerCadena("Ingrese su especialidad: ");
-            while (especialidad.isEmpty())
-            {
-                especialidad = EntradaYSalida.leerCadena("ERROR: La especialidad no puede ser nula"
-                        + "+Ingrese su especialidad:");
-            }
-            
             dato = usuario+":"+contrasenia;
             empleado = veterinaria.getBuscarEmpleado(dato, sistema);
             
@@ -106,7 +103,7 @@ public class Administrador extends Empleado implements Serializable
             } 
             else
             {
-                veterinaria.setEmpleado(new Veterinario(usuario, contrasenia,especialidad), sistema);
+                veterinaria.setEmpleado(new Veterinario(usuario, contrasenia), sistema);
                 EntradaYSalida.mostrarMensaje("\nSe ha incorporado VETERINARIO al sistema\n");
             }
             

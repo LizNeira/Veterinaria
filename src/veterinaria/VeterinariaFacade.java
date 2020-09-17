@@ -11,7 +11,6 @@ public interface VeterinariaFacade
     public void setProductoMedicamento(Medicamento medicamento, Sistema sistema);
     public void getMostrarListaMedicamento(Sistema sistema);
     public void getMostrarListaRegular(Sistema sistema);
-    public void getMostrarListaTurno(Sistema sistema);
     public void getMostrarListaRegularVendido(Sistema sistema);
     public void getMostrarListaMedicamentoVendido(Sistema sistema);
     public ArrayList<Producto> getListaMedicamentoVendido(Sistema sistema);
@@ -28,6 +27,13 @@ public interface VeterinariaFacade
     public void venderProductoMedicamento(int indiceProducto, Sistema sistema);
     public int getCantidadProductoRegular(Sistema sistema);//Usado por la clase Recepcionista también.
     public int getCantidadProductoMedicamento(Sistema sistema);//Usado por la clase Recepcionista también.
+    public void atenderAnimal(String especialidad, int indiceTurno, Sistema sistema);
+    public int getCantidadTurno(String especialidad, Sistema sistema);
+    public void getMostrarListaTurnoPerro(Sistema sistema);
+    public void getMostrarListaTurnoGato(Sistema sistema);
+    public void getMostrarListaTurnoTortuga(Sistema sistema);
+    public void getMostrarListaTurnoCanario(Sistema sistema);
+
     //</editor-fold>
     
 }

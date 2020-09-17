@@ -7,7 +7,7 @@ public class Recepcionista extends Empleado implements Serializable
 {
     
      private GuardarYLeerArchivo guardarYLeerArchivo = new GuardarYLeerArchivo();
-     private Veterinaria veterinaria;
+     private final Veterinaria veterinaria;
     
      public Recepcionista(String usuario, String contrasenia)
      {
@@ -34,7 +34,6 @@ public class Recepcionista extends Empleado implements Serializable
                 {
                     case 1:
                            darTurno(sistema);
-                           veterinaria.getMostrarListaTurno(sistema);
                        break;
                     case 2:
                            venderRegular(sistema);
@@ -51,7 +50,6 @@ public class Recepcionista extends Empleado implements Serializable
 
     private void darTurno(Sistema sistema)
     {
-
         String opcion;
         String nombreDuenio;
         String numeroContacto;
@@ -72,8 +70,7 @@ public class Recepcionista extends Empleado implements Serializable
             while (numeroContacto.isEmpty())
             {
                 numeroContacto = EntradaYSalida.leerCadena("ERROR: El numero no puede ser nulo");
-            }
-            
+            } 
             
                           mensaje = ("\n---Tipo---\n"
                                     + "[1] Gato\n"
@@ -100,13 +97,13 @@ public class Recepcionista extends Empleado implements Serializable
             }
             
            nombreAnimal = EntradaYSalida.leerCadena("Ingrese el nombre del animal: ");
-            while (nombreAnimal.isEmpty())
-            {
+           while (nombreAnimal.isEmpty())
+           {
                 nombreAnimal = EntradaYSalida.leerCadena("ERROR: el tipo de animal no puede ser nulo "
                         + "Ingrese el tipo de animal:");
-            }
+           }
 
-            veterinaria.setTurno(nombreDuenio,numeroContacto,tipoAnimal,nombreAnimal, sistema);
+            veterinaria.setTurno(nombreDuenio, numeroContacto, tipoAnimal, nombreAnimal, sistema);
             EntradaYSalida.mostrarMensaje("\nSe ha dado el turno\n");
             opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 
