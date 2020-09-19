@@ -6,11 +6,13 @@ public class Turno
 {
   private Animal animal;
   private Duenio duenio;
-
-    public Turno(Animal animal, Duenio duenio)
+  private String hora;
+  
+    public Turno(Animal animal, Duenio duenio,String hora)
     {
         this.animal = animal;
         this.duenio = duenio;
+        this.hora = hora;
     }
   
     
@@ -33,6 +35,18 @@ public class Turno
     {
         this.duenio = duenio;
     }
+
+    public String getHora()
+    {
+        return hora;
+    }
+
+    public void setHora(String hora)
+    {
+        this.hora = hora;
+    }
+    
+    
 
   
   

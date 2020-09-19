@@ -27,8 +27,8 @@ public class Administrador extends Empleado implements Serializable
                     +"[1] Dar de alta Veterinario\n"
                     +"[2] Dar de alta Recepcionista\n"
                     +"[3] Dar alta Productos\n"
-                    +"[4] Ver Medicamentos\n"
-                    +"[5] Ver Regulares\n"
+                    +"[4] Ver Medicamentos Disponibles\n"
+                    +"[5] Ver Regulares Disponibles\n"
                     +"[6] Ver Medicamentos Vendidos\n"
                     +"[7] Ver Regulares Vendidos\n"
                     +"[8] Salir\n"
@@ -76,7 +76,7 @@ public class Administrador extends Empleado implements Serializable
     private void altaVeterinario(Sistema sistema)
     {
         Empleado empleado;
-        String usuario, contrasenia,especialidad,opcion;
+        String usuario, contrasenia,opcion;
         String dato ;
         do
         {
@@ -104,7 +104,7 @@ public class Administrador extends Empleado implements Serializable
             else
             {
                 veterinaria.setEmpleado(new Veterinario(usuario, contrasenia), sistema);
-                EntradaYSalida.mostrarMensaje("\nSe ha incorporado VETERINARIO al sistema\n");
+                EntradaYSalida.mostrarMensaje("\nSe ha incorporado un/a VETERINARIO/A al sistema\n");
             }
             
             opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
@@ -144,7 +144,7 @@ public class Administrador extends Empleado implements Serializable
             else
             {
               veterinaria.setEmpleado(new Recepcionista(usuario, contrasenia), sistema);
-              EntradaYSalida.mostrarMensaje("\nSe ha incorporado RECEPCIONISTA al sistema\n");
+              EntradaYSalida.mostrarMensaje("\nSe ha incorporado un/a RECEPCIONISTA al sistema\n");
             }
             
             opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");

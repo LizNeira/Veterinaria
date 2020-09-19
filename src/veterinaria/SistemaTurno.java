@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class SistemaTurno implements Serializable 
 {
-    private final ArrayList<Turno> listaTurnoPerro;
+    private final ArrayList<Turno> listaTurnoPerro; 
     private final ArrayList<Turno> listaTurnoGato;
     private final ArrayList<Turno> listaTurnoTortuga;
     private final ArrayList<Turno> listaTurnoCanario;
@@ -48,7 +48,9 @@ public class SistemaTurno implements Serializable
                 + "||Nombre del duenio: " + listaTurnoPerro.get(i).getDuenio().getNombre()
                 + "||Telefono: " + listaTurnoPerro.get(i).getDuenio().getNumeroContacto()
                 + "||Tipo de animal: " + listaTurnoPerro.get(i).getAnimal().getTipo()
-                + "||Nombre del animal: " + listaTurnoPerro.get(i).getAnimal().getNombre());
+                + "||Nombre del animal: " + listaTurnoPerro.get(i).getAnimal().getNombre()
+                + "||Hora: " + listaTurnoPerro.get(i).getHora());
+
 
         }
         
@@ -64,7 +66,9 @@ public class SistemaTurno implements Serializable
                 + "||Nombre del duenio: " + listaTurnoGato.get(i).getDuenio().getNombre()
                 + "||Telefono: " + listaTurnoGato.get(i).getDuenio().getNumeroContacto()
                 + "||Tipo de animal: " + listaTurnoGato.get(i).getAnimal().getTipo()
-                + "||Nombre del animal: " + listaTurnoGato.get(i).getAnimal().getNombre());
+                + "||Nombre del animal: " + listaTurnoGato.get(i).getAnimal().getNombre()
+                + "||Hora: " + listaTurnoGato.get(i).getHora());
+
 
         }
         
@@ -79,7 +83,8 @@ public class SistemaTurno implements Serializable
                 + "||Nombre del duenio: " + listaTurnoTortuga.get(i).getDuenio().getNombre()
                 + "||Telefono: " + listaTurnoTortuga.get(i).getDuenio().getNumeroContacto()
                 + "||Tipo de animal: " + listaTurnoTortuga.get(i).getAnimal().getTipo()
-                + "||Nombre del animal: " + listaTurnoTortuga.get(i).getAnimal().getNombre());
+                + "||Nombre del animal: " + listaTurnoTortuga.get(i).getAnimal().getNombre()
+                + "||Hora: " + listaTurnoTortuga.get(i).getHora());
 
         }
         
@@ -95,7 +100,8 @@ public class SistemaTurno implements Serializable
                 + "||Nombre del duenio: " + listaTurnoCanario.get(i).getDuenio().getNombre()
                 + "||Telefono: " + listaTurnoCanario.get(i).getDuenio().getNumeroContacto()
                 + "||Tipo de animal: " + listaTurnoCanario.get(i).getAnimal().getTipo()
-                + "||Nombre del animal: " + listaTurnoCanario.get(i).getAnimal().getNombre());
+                + "||Nombre del animal: " + listaTurnoCanario.get(i).getAnimal().getNombre()
+                + "||Hora: " + listaTurnoCanario.get(i).getHora());
 
         }
         

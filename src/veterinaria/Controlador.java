@@ -23,7 +23,7 @@ public class Controlador implements Serializable
         catch (Exception e)
         { 
             usuario = EntradaYSalida.leerCadena("Primer Arranque del sistema.\n"
-                    + "Nuevo Administrador, Ingrese su nombre: ");
+                    + "Nuevo/a Administrador/a, Ingrese su nombre: ");
             while (usuario.isEmpty())
             {
                 usuario = EntradaYSalida.leerCadena("ERROR: El usuario no puede ser nulo"

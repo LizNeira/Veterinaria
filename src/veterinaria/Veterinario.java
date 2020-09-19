@@ -25,7 +25,7 @@ public class Veterinario extends Empleado implements Serializable
            mensaje = "\n-----Menu Veterinario-----\n"
                         +"[1] Vender Medicamentos\n"
                         +"[2] Vender Regulares\n"
-                        +"[3] Atender animales\n"
+                        +"[3] Atender Turno\n"
                         +"[4] Salir\n"
                         +"Digite una opcion: ";
            opcion = EntradaYSalida.leerEntero(mensaje);
@@ -39,7 +39,7 @@ public class Veterinario extends Empleado implements Serializable
                      venderRegular(sistema);
                break;
               case 3:
-                     atenderAnimal(sistema);
+                     atenderTurno(sistema);
                break;
               case 4:
                      EntradaYSalida.mostrarMensaje("\nCerrando menu del Veterinario...\n");
@@ -55,31 +55,35 @@ public class Veterinario extends Empleado implements Serializable
     {
         String opcion;
         int indicePedido;
-     do 
-      {       
-        veterinaria.getMostrarListaMedicamento(sistema);
-        indicePedido = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
         
-        while(indicePedido < 0 || indicePedido > veterinaria.getCantidadProductoMedicamento(sistema))
-        {
-                  indicePedido = EntradaYSalida.leerEntero("\nOpcion no valida"
-                  + "\nIngrese nuevamente: ");
-        }
-          
-        veterinaria.venderProductoMedicamento(indicePedido, sistema);
-        opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
-      
-        } while( opcion.equals("s") || opcion.equals("S"));
+    if(veterinaria.getMostrarListaRegular(sistema))
+     { 
+        do 
+        {        
+          indicePedido = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
+
+          while(indicePedido < 0 || indicePedido > veterinaria.getCantidadProductoMedicamento(sistema))
+          {
+                    indicePedido = EntradaYSalida.leerEntero("\nOpcion no valida"
+                    + "\nIngrese nuevamente: ");
+          }
+
+          veterinaria.venderProductoMedicamento(indicePedido, sistema);
+          opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
+
+          } while( opcion.equals("s") || opcion.equals("S"));
+      }
     }
 
     private void venderRegular(Sistema sistema)
     {
         String opcion;
         int indicePedido;
-     
+        
+     if(veterinaria.getMostrarListaRegular(sistema))
+      {
         do 
-        {       
-            EntradaYSalida.mostrarMensaje("\n---Lista de Regulares---\n");
+        {   
             veterinaria.getMostrarListaRegular(sistema);
             indicePedido = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
 
@@ -88,14 +92,15 @@ public class Veterinario extends Empleado implements Serializable
                       indicePedido = EntradaYSalida.leerEntero("\nOpcion no valida"
                       + "\nIngrese nuevamente: ");
             }
-
+            
             veterinaria.venderProductoRegular(indicePedido, sistema);
             opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
       
          } while( opcion.equals("s") || opcion.equals("S"));
+      }
     }
     
-    private void atenderAnimal(Sistema sistema)
+    private void atenderTurno(Sistema sistema)
     {
         String opcion;
         String mensaje;
@@ -134,12 +139,8 @@ public class Veterinario extends Empleado implements Serializable
     
     private void atenderEspecialidadGato(Sistema sistema)
     {
-        String opcion;
         int indiceTurno;
-     
-        do 
-        {       
-            EntradaYSalida.mostrarMensaje("\n---Lista de gatos---\n");
+        
             veterinaria.getMostrarListaTurnoGato(sistema);
             indiceTurno = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
 
@@ -150,20 +151,12 @@ public class Veterinario extends Empleado implements Serializable
             }
 
             veterinaria.atenderAnimal("Gato", indiceTurno, sistema);
-            opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
-      
-         } while( opcion.equals("s") || opcion.equals("S"));
-
     }
     
     private void atenderEspecialidadPerro(Sistema sistema)
     {
-        String opcion;
         int indiceTurno;
      
-        do 
-        {       
-            EntradaYSalida.mostrarMensaje("\n---Lista de perros---\n");
             veterinaria.getMostrarListaTurnoPerro(sistema);
             indiceTurno = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
 
@@ -174,20 +167,13 @@ public class Veterinario extends Empleado implements Serializable
             }
 
             veterinaria.atenderAnimal("Perro", indiceTurno, sistema);
-            opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
-      
-         } while( opcion.equals("s") || opcion.equals("S"));
-
+    
     }
 
     private void atenderEspecialidadCanario(Sistema sistema)
     {
-        String opcion;
         int indiceTurno;
      
-        do 
-        {       
-            EntradaYSalida.mostrarMensaje("\n---Lista de Canarios---\n");
             veterinaria.getMostrarListaTurnoCanario(sistema);
             indiceTurno = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
 
@@ -198,20 +184,13 @@ public class Veterinario extends Empleado implements Serializable
             }
 
             veterinaria.atenderAnimal("Canario", indiceTurno, sistema);
-            opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
-      
-         } while( opcion.equals("s") || opcion.equals("S"));
 
     }
     
     private void atenderEspecialidadTortuga(Sistema sistema)
     {
-        String opcion;
         int indiceTurno;
-     
-        do 
-        {       
-            EntradaYSalida.mostrarMensaje("\n---Lista de Tortugas---\n");
+
             veterinaria.getMostrarListaTurnoTortuga(sistema);
             indiceTurno = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
 
@@ -222,9 +201,6 @@ public class Veterinario extends Empleado implements Serializable
             }
 
             veterinaria.atenderAnimal("Tortuga", indiceTurno, sistema);
-            opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
       
-         } while( opcion.equals("s") || opcion.equals("S"));
-
     }
 }

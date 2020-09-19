@@ -1,6 +1,10 @@
 package veterinaria;
 
 import static java.lang.Character.toUpperCase;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class EntradaYSalida
@@ -48,11 +52,52 @@ public class EntradaYSalida
             return false;
         }
         
-//          System.out.print(texto);
-//        String entrada = new Scanner(System.in).nextLine();
-//
-//       return toUpperCase(entrada.charAt(0)) == 'S';
  
     }
+   public static String leerHora()
+    {
+        
+        Scanner entrada = new Scanner(System.in);
 
+         String hora;
+         Date horaValida = null;
+       
+        do
+        {
+            System.out.print("Ingrese la hora (HH:mm): ");
+            hora =entrada.nextLine();
+          
+            try
+            {
+               horaValida = validarHora(hora);
+            }
+            catch(ParseException e)
+            {
+                e.getMessage();
+            }
+            
+       }while( horaValida == null );
+
+         return hora;
+      }
+   
+    public static Date validarHora(String horaValidar) throws ParseException
+     {
+        
+        Date hora = null;
+        try
+        {
+            SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm",Locale.UK);
+
+            formatoHora.setLenient(false);
+
+             hora = formatoHora.parse(horaValidar);
+        }
+        catch(ParseException e)
+        {
+            throw e;
+        }
+        
+        return hora;
+    }
 }

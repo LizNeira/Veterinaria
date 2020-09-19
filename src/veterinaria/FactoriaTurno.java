@@ -41,8 +41,8 @@ public class FactoriaTurno
         
             else
             {
-               animal.setNombre(tipoAnimal);
-               animal.setTipo(nombreAnimal);
+               animal.setNombre(nombreAnimal);
+               animal.setTipo(tipoAnimal);
             }
           
             return animal;

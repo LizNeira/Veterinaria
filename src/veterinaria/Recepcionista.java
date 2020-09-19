@@ -39,7 +39,7 @@ public class Recepcionista extends Empleado implements Serializable
                            venderRegular(sistema);
                         break;
                     case 3:
-                        EntradaYSalida.mostrarMensaje("Cerrando menu del cocinero...");
+                        EntradaYSalida.mostrarMensaje("Cerrando menu de la recepcion...");
                       break;
                 }
             
@@ -56,6 +56,7 @@ public class Recepcionista extends Empleado implements Serializable
         String nombreAnimal;
         String tipoAnimal;
         String mensaje;
+        String hora;
         
        do
         {
@@ -102,8 +103,10 @@ public class Recepcionista extends Empleado implements Serializable
                 nombreAnimal = EntradaYSalida.leerCadena("ERROR: el tipo de animal no puede ser nulo "
                         + "Ingrese el tipo de animal:");
            }
-
-            veterinaria.setTurno(nombreDuenio, numeroContacto, tipoAnimal, nombreAnimal, sistema);
+           
+            hora = EntradaYSalida.leerHora();
+            veterinaria.setTurno(nombreDuenio, numeroContacto, tipoAnimal, nombreAnimal, sistema,hora);
+            
             EntradaYSalida.mostrarMensaje("\nSe ha dado el turno\n");
             opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 
@@ -114,24 +117,28 @@ public class Recepcionista extends Empleado implements Serializable
     {
         String opcion;
         int indiceProducto = 0;
-     do 
-      {       
-        veterinaria.getMostrarListaRegular(sistema);
-        indiceProducto = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
         
-        while(indiceProducto < 0 || indiceProducto > veterinaria.getCantidadProductoRegular(sistema))
-        {
-                  indiceProducto = EntradaYSalida.leerEntero("\nOpcion no valida"
-                  + "\nIngrese nuevamente: ");
-        }
+    if(veterinaria.getMostrarListaRegular(sistema))
+      {
+      do 
+        { 
+            indiceProducto = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
+
+            while(indiceProducto < 0 || indiceProducto > veterinaria.getCantidadProductoRegular(sistema))
+            {
+                      indiceProducto = EntradaYSalida.leerEntero("\nOpcion no valida"
+                      + "\nIngrese nuevamente: ");
+            }
+
+            veterinaria.venderProductoRegular(indiceProducto,sistema);
+
+            EntradaYSalida.mostrarMensaje("\n\n¡¡Venta Èxitosa!!\n\n");
+            opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
         
-        veterinaria.venderProductoRegular(indiceProducto,sistema);
-         
-        EntradaYSalida.mostrarMensaje("\n\n¡¡Venta Èxitosa!!\n\n");
-        opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
-      
         } while( opcion.equals("s") || opcion.equals("S"));
+      } 
+       
     }
-    
+  
 
 }

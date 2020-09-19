@@ -38,61 +38,97 @@ public class SistemaProducto implements Serializable
         return listaMedicamentoVendido;
     }
     
-   
-    public void mostrarListaMedicamento()
+    public boolean mostrarListaMedicamento()
     {  
+     boolean estado = false;
+     
+     if(!listaMedicamento.isEmpty())
+      { 
+        estado = true;  
         EntradaYSalida.mostrarMensaje("\n---lista de Medicamentos---\n");
 
         for (int i = 0; i < listaMedicamento.size(); i++) 
         {
             EntradaYSalida.mostrarMensaje("\n"+"["+(i+1)+"] "
                     +"||Descripcion: "+listaMedicamento.get(i).getDescripcion()
-                    +"||Precio: "+listaMedicamento.get(i).getprecio());
+                    +"||Precio: $"+listaMedicamento.get(i).getprecio());
         }
+      }
+     else
+      {
+           EntradaYSalida.mostrarMensaje("\n---Lista vacia\n");  
+      }
+        return estado;
     }
     
-    public void mostrarListaRegular()
+    public boolean mostrarListaRegular()
     {
+      boolean estado =false ; 
+      
+      if(!listaRegular.isEmpty())
+      {
+        estado = true;  
         EntradaYSalida.mostrarMensaje("\n---Lista de Regulares---\n");
 
         for (int i = 0; i < listaRegular.size(); i++) 
         {
             EntradaYSalida.mostrarMensaje("\n"+"["+(i+1)+"] "
                     +"||Descripcion: "+listaRegular.get(i).getDescripcion()
-                    +"||Precio: "+listaRegular.get(i).getprecio());
+                    +"||Precio: $"+listaRegular.get(i).getprecio());
         }
-
+        
+      }
+     else
+      {
+           EntradaYSalida.mostrarMensaje("\n---Lista vacia\n");  
+      }
+        return estado;
    } 
     
     public void mostrarListaRegularVendido()
     {
         int i = 1;
         
+     if(! listaRegularVendido.isEmpty())
+      { 
         EntradaYSalida.mostrarMensaje("\n---Lista de Regulares Vendidos---\n");
 
         for  (Producto producto : getListaRegularVendido() )
         {
             EntradaYSalida.mostrarMensaje("\n"+"["+(i)+"]"
-                                          +"||Preparaciones: " +producto.getDescripcion()
-                                          +"||Bebida: "+producto.getprecio());
+                                          +"||Descripcion: " +producto.getDescripcion()
+                                          +"||Precio: $"+producto.getprecio());
             i++;
         }
         EntradaYSalida.leerCadena("\n\nPresione cualquier tecla para salir ");
+      }
+     else
+      {
+        EntradaYSalida.mostrarMensaje("\n---Lista vacia\n");
+      }
     }
     
     public void mostrarListaMedicamentoVendido()
     {
          int i = 1;
          
+     if(! listaMedicamentoVendido.isEmpty())
+      { 
+          
         EntradaYSalida.mostrarMensaje("\n---Lista de Medicamentos Vendidos---\n");
 
         for  (Producto producto : getListaMedicamentoVendido() )
         {
             EntradaYSalida.mostrarMensaje("\n"+"["+(i)+"]"
-                                          +"||Preparaciones: " +producto.getDescripcion()
-                                          +"||Bebida: "+producto.getprecio());
+                                          +"||Descripcion: " +producto.getDescripcion()
+                                          +"||Precio: $"+producto.getprecio());
             i++;
         }
         EntradaYSalida.leerCadena("\n\nPresione cualquier tecla para salir ");
+      }
+     else
+     {
+        EntradaYSalida.mostrarMensaje("\n---Lista vacia\n");
+     }
    }
 }

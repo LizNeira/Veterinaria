@@ -5,13 +5,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.io.Serializable;
 
-
 public class Veterinaria implements VeterinariaFacade, Serializable
 {
     private  FactoriaTurno factoriaTurno;
     private  GuardarYLeerArchivo guardarYLeerArchivo = new GuardarYLeerArchivo();
     private static Veterinaria veterinaria = null;
-    
     
     private Veterinaria()
     {
@@ -58,15 +56,15 @@ public class Veterinaria implements VeterinariaFacade, Serializable
     }
 
     @Override
-    public void getMostrarListaMedicamento(Sistema sistema) 
+    public boolean getMostrarListaMedicamento(Sistema sistema) 
     {
-       sistema.getSistemaProducto().mostrarListaMedicamento();
+       return sistema.getSistemaProducto().mostrarListaMedicamento();
     }
     
     @Override
-    public void getMostrarListaRegular(Sistema sistema) 
+    public boolean getMostrarListaRegular(Sistema sistema) 
     {
-       sistema.getSistemaProducto().mostrarListaRegular(); 
+      return sistema.getSistemaProducto().mostrarListaRegular(); 
     }
     
     @Override
@@ -96,8 +94,8 @@ public class Veterinaria implements VeterinariaFacade, Serializable
 
     //<editor-fold defaultstate="collapsed" desc="Recepcionista">
     @Override
-    public void setTurno(String nombreDuenio, String numeroContacto, String nombreAnimal, 
-                         String tipoAnimal, Sistema sistema) 
+    public void setTurno(String nombreDuenio, String numeroContacto, String tipoAnimal, 
+                         String nombreAnimal, Sistema sistema,String hora) 
     {
         factoriaTurno = FactoriaTurno.getInstancia();
         
@@ -106,19 +104,20 @@ public class Veterinaria implements VeterinariaFacade, Serializable
            Animal animal = factoriaTurno.crearAnimal("Animal", nombreAnimal,tipoAnimal);
            Duenio duenio = factoriaTurno.crearDuenio("Duenio" ,nombreDuenio, numeroContacto);
            
+           
             switch (tipoAnimal) 
             {
                 case "Perro":
-                    sistema.getSistemaTurno().getListaTurnoPerro().add(new Turno(animal, duenio));
+                    sistema.getSistemaTurno().getListaTurnoPerro().add(new Turno(animal, duenio,hora));
                     break;
                 case "Gato":
-                    sistema.getSistemaTurno().getListaTurnoGato().add(new Turno(animal, duenio));
+                    sistema.getSistemaTurno().getListaTurnoGato().add(new Turno(animal, duenio,hora));
                     break;
                 case "Tortuga":
-                    sistema.getSistemaTurno().getListaTurnoTortuga().add(new Turno(animal, duenio));
+                    sistema.getSistemaTurno().getListaTurnoTortuga().add(new Turno(animal, duenio,hora));
                     break;
                 case "Canario":
-                    sistema.getSistemaTurno().getListaTurnoCanario().add(new Turno(animal, duenio));
+                    sistema.getSistemaTurno().getListaTurnoCanario().add(new Turno(animal, duenio,hora));
                     break;
                 
             }

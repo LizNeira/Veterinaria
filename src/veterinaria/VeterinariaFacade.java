@@ -9,8 +9,8 @@ public interface VeterinariaFacade
     public void setEmpleado(Empleado empleado, Sistema sistema);//Usado por la clase Controlador también.
     public void setProductoRegular(Regular regular, Sistema sistema);
     public void setProductoMedicamento(Medicamento medicamento, Sistema sistema);
-    public void getMostrarListaMedicamento(Sistema sistema);
-    public void getMostrarListaRegular(Sistema sistema);
+    public boolean getMostrarListaMedicamento(Sistema sistema);
+    public boolean getMostrarListaRegular(Sistema sistema);
     public void getMostrarListaRegularVendido(Sistema sistema);
     public void getMostrarListaMedicamentoVendido(Sistema sistema);
     public ArrayList<Producto> getListaMedicamentoVendido(Sistema sistema);
@@ -18,7 +18,7 @@ public interface VeterinariaFacade
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Recepcionista">
-    public void setTurno(String nombreAnimal, String tipoAnimal, String nombreDuenio, String numeroContacto, Sistema sistema);
+    public void setTurno(String nombreDuenio, String numeroContacto,String tipoAnimal,String nombreAnimal, Sistema sistema,String hora);
     public int getCantidadTurno(Sistema sistema);
     public void venderProductoRegular(int indiceProducto, Sistema sistema);//Usado por la clase Veterinario también.
     //</editor-fold>
