@@ -104,9 +104,17 @@ public class Recepcionista extends Empleado implements Serializable
                         + "Ingrese el tipo de animal:");
            }
            
-            hora = EntradaYSalida.leerHora();
+           hora = EntradaYSalida.leerHora();
+//         if(horarioDisponible(hora,especialidad,sistema))
+//           {
+               
+  
             veterinaria.setTurno(nombreDuenio, numeroContacto, tipoAnimal, nombreAnimal, sistema,hora);
-            
+//           }
+//          else
+//           {
+//                  
+//           }
             EntradaYSalida.mostrarMensaje("\nSe ha dado el turno\n");
             opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 

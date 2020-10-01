@@ -57,6 +57,7 @@ public class EntradaYSalida
    public static String leerHora()
     {
         
+        
         Scanner entrada = new Scanner(System.in);
 
          String hora;
@@ -74,29 +75,76 @@ public class EntradaYSalida
             catch(ParseException e)
             {
                 e.getMessage();
+            } catch (Exception ex)
+            {
+                System.out.println(ex.getMessage());
             }
             
-       }while( horaValida == null );
+        }while( horaValida == null );
 
-         return hora;
+               
+        return hora;
       }
    
-    public static Date validarHora(String horaValidar) throws ParseException
+    public static Date validarHora(String horaValidar) throws ParseException, Exception
      {
         
+          /*Los turnos se dan desde las 9hs hasta las 18hs en
+         intervalos de 30 minutos y con un receso de 12hs a 13.30hs*/
+        
+         /* 9:15 */
+         
+         /* 9 a 12 y de 13:30 18 */
+         /* 9, 9:30, ...*/
+         
         Date hora = null;
         try
         {
-            SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm",Locale.UK);
+             String horaInicialPrimerBloque = "9:00";
+             String horaFinalPrimerBloque = "12:00";
+             
+             String horaInicialSegundoBloque = "13:30";
+             String horaFinalSegundoBloque = "18:00";
 
-            formatoHora.setLenient(false);
+             
+             SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
+             formatoHora.setLenient(false);
+             
+             Date horaIniPrimerBloque;
+             Date horaFinPrimerBloque;
+             
+             Date horaIniSegundoBloque;
+             Date horaFinSegundoBloque;
 
-             hora = formatoHora.parse(horaValidar);
+             
+             horaIniPrimerBloque = formatoHora.parse(horaInicialPrimerBloque);
+             horaFinPrimerBloque = formatoHora.parse(horaFinalPrimerBloque);
+             
+             horaIniSegundoBloque = formatoHora.parse(horaInicialSegundoBloque);
+             horaFinSegundoBloque = formatoHora.parse(horaFinalSegundoBloque);
+
+            hora= formatoHora.parse(horaValidar);
+             
+            if (    horaIniPrimerBloque.compareTo(hora) <= 0
+                 && horaFinPrimerBloque.compareTo(hora) >= 0
+                 || horaIniSegundoBloque.compareTo(hora) <= 0
+                 && horaFinSegundoBloque.compareTo(hora) >= 0 
+               )
+               {
+                long diferenciaMinutos =  (hora.getTime() - horaIniPrimerBloque.getTime()) / 1000 / 60;
+                if ( diferenciaMinutos % 30 > 0 )
+                {
+                    throw new Exception("Error: Los horarios se deben asignar cada 30 minutos");
+                }
+            }
+            else{
+                    throw new Exception("Hora sin atencion al publico");
+            }
         }
         catch(ParseException e)
         {
-            throw e;
-        }
+            throw new Exception("La hora no es valida");
+        }        
         
         return hora;
     }
