@@ -142,10 +142,57 @@ public class Veterinaria implements VeterinariaFacade, Serializable
       productoSeleccionado = sistema.getSistemaProducto().getListaRegular().get(indiceProducto -1);
       sistema.getSistemaProducto().getListaRegularVendido().add(productoSeleccionado);
       sistema.getSistemaProducto().getListaRegular().remove(indiceProducto - 1); 
-      guardarYLeerArchivo.guardarArchivo(sistema);
-        
+      guardarYLeerArchivo.guardarArchivo(sistema);     
     }
 
+    public boolean esHorarioDisponible(String hora, String especialidad, Sistema sistema) 
+    {
+        boolean estado = true;
+        
+        switch (especialidad) 
+        {
+            case "Perro":
+                      if(sistema.getSistemaTurno().getListaTurnoPerro().isEmpty())
+                          estado = true;
+                      
+                      else
+                        for(Turno turno : sistema.getSistemaTurno().getListaTurnoPerro())
+                              if(turno.getHora().equals(hora))
+                                  estado = false;
+                break;
+            case "Gato":
+                    if(sistema.getSistemaTurno().getListaTurnoGato().isEmpty())
+                          estado = true;
+                    
+                    else
+                      for(Turno turno : sistema.getSistemaTurno().getListaTurnoGato())
+                          if(turno.getHora().equals(hora))
+                             estado = false;
+                break;
+            case "Tortuga":
+                     if(sistema.getSistemaTurno().getListaTurnoTortuga().isEmpty())
+                          estado = true;
+                     
+                     else
+                        for(Turno turno : sistema.getSistemaTurno().getListaTurnoTortuga())
+                             if(turno.getHora().equals(hora))
+                                 estado = false;
+                break;
+            case "Canario":
+                    if(sistema.getSistemaTurno().getListaTurnoCanario().isEmpty())
+                          estado = true;
+                    
+                    else
+                      for(Turno turno : sistema.getSistemaTurno().getListaTurnoCanario())
+                          if(turno.getHora().equals(hora))
+                              estado = false;
+                break;
+            default:
+                throw new AssertionError();
+        }
+        
+        return estado;
+    }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Veterinario">
@@ -222,27 +269,27 @@ public class Veterinaria implements VeterinariaFacade, Serializable
     }
     
     @Override
-    public void getMostrarListaTurnoPerro(Sistema sistema) 
+    public boolean getMostrarListaTurnoPerro(Sistema sistema) 
     {
-       sistema.getSistemaTurno().mostrarListaTurnoPerro(); 
+       return sistema.getSistemaTurno().mostrarListaTurnoPerro(); 
     }
     
     @Override
-    public void getMostrarListaTurnoGato(Sistema sistema) 
+    public boolean getMostrarListaTurnoGato(Sistema sistema) 
     {
-       sistema.getSistemaTurno().mostrarListaTurnoGato(); 
+       return sistema.getSistemaTurno().mostrarListaTurnoGato(); 
     }
     
     @Override
-    public void getMostrarListaTurnoTortuga(Sistema sistema) 
+    public boolean getMostrarListaTurnoTortuga(Sistema sistema) 
     {
-       sistema.getSistemaTurno().mostrarListaTurnoTortuga(); 
+       return sistema.getSistemaTurno().mostrarListaTurnoTortuga(); 
     }
     
     @Override
-    public void getMostrarListaTurnoCanario(Sistema sistema) 
+    public boolean getMostrarListaTurnoCanario(Sistema sistema) 
     {
-       sistema.getSistemaTurno().mostrarListaTurnoCanario(); 
+       return sistema.getSistemaTurno().mostrarListaTurnoCanario(); 
     }
     
     //</editor-fold>

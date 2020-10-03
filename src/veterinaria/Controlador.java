@@ -66,7 +66,7 @@ public class Controlador implements Serializable
 
             if (null == empleado)
             {
-                EntradaYSalida.mostrarMensaje("ERROR: La contraseña ingresada no es valida.");    
+                EntradaYSalida.mostrarMensaje("ERROR: La contraseña/usuario ingresado no es valida.");    
             } 
             else
             {

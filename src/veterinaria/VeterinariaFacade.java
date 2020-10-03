@@ -29,10 +29,10 @@ public interface VeterinariaFacade
     public int getCantidadProductoMedicamento(Sistema sistema);//Usado por la clase Recepcionista también.
     public void atenderAnimal(String especialidad, int indiceTurno, Sistema sistema);
     public int getCantidadTurno(String especialidad, Sistema sistema);
-    public void getMostrarListaTurnoPerro(Sistema sistema);
-    public void getMostrarListaTurnoGato(Sistema sistema);
-    public void getMostrarListaTurnoTortuga(Sistema sistema);
-    public void getMostrarListaTurnoCanario(Sistema sistema);
+    public boolean getMostrarListaTurnoPerro(Sistema sistema);
+    public boolean getMostrarListaTurnoGato(Sistema sistema);
+    public boolean getMostrarListaTurnoTortuga(Sistema sistema);
+    public boolean getMostrarListaTurnoCanario(Sistema sistema);
 
     //</editor-fold>
     

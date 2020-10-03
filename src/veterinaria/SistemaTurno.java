@@ -38,72 +38,122 @@ public class SistemaTurno implements Serializable
         return listaTurnoCanario;
     }
     
-    public void mostrarListaTurnoPerro()
+    public boolean mostrarListaTurnoPerro()
     {
-        EntradaYSalida.mostrarMensaje("\n---Lista de turnos de perros---\n");
+        boolean estado = false;
+       
+        if (!listaTurnoPerro.isEmpty())
+         {
+            estado = true;
+            EntradaYSalida.mostrarMensaje("\n---Lista de turnos de perros---\n");
 
-        for (int i = 0; i < listaTurnoPerro.size(); i++) 
+            for (int i = 0; i < listaTurnoPerro.size(); i++)
+             {
+                EntradaYSalida.mostrarMensaje("\n" + "[" + (i + 1) + "] "
+                        + "||Nombre del duenio: " + listaTurnoPerro.get(i).getDuenio().getNombre()
+                        + "||Telefono: " + listaTurnoPerro.get(i).getDuenio().getNumeroContacto()
+                        + "||Tipo de animal: " + listaTurnoPerro.get(i).getAnimal().getTipo()
+                        + "||Nombre del animal: " + listaTurnoPerro.get(i).getAnimal().getNombre()
+                        + "||Hora: " + listaTurnoPerro.get(i).getHora());
+
+             }
+         } 
+         else 
         {
-            EntradaYSalida.mostrarMensaje("\n"+"["+(i+1)+"] "
-                + "||Nombre del duenio: " + listaTurnoPerro.get(i).getDuenio().getNombre()
-                + "||Telefono: " + listaTurnoPerro.get(i).getDuenio().getNumeroContacto()
-                + "||Tipo de animal: " + listaTurnoPerro.get(i).getAnimal().getTipo()
-                + "||Nombre del animal: " + listaTurnoPerro.get(i).getAnimal().getNombre()
-                + "||Hora: " + listaTurnoPerro.get(i).getHora());
-
-
+            EntradaYSalida.mostrarMensaje("\n---Lista vacia\n");
+            EntradaYSalida.leerCadena("\n\nPresione cualquier tecla para salir ");
         }
+        return estado;
         
     }
     
-    public void mostrarListaTurnoGato()
+    public boolean mostrarListaTurnoGato()
     {
-        EntradaYSalida.mostrarMensaje("\n---Lista de turnos de gatos---\n");
+        boolean estado = false;
+       
+        if (!listaTurnoGato.isEmpty())
+         {
+            estado = true;
+            EntradaYSalida.mostrarMensaje("\n---Lista de turnos de gatos---\n");
+        
+            for (int i = 0; i < listaTurnoGato.size(); i++) 
+            {
+                EntradaYSalida.mostrarMensaje("\n"+"["+(i+1)+"] "
+                    + "||Nombre del duenio: " + listaTurnoGato.get(i).getDuenio().getNombre()
+                    + "||Telefono: " + listaTurnoGato.get(i).getDuenio().getNumeroContacto()
+                    + "||Tipo de animal: " + listaTurnoGato.get(i).getAnimal().getTipo()
+                    + "||Nombre del animal: " + listaTurnoGato.get(i).getAnimal().getNombre()
+                    + "||Hora: " + listaTurnoGato.get(i).getHora());
 
-        for (int i = 0; i < listaTurnoGato.size(); i++) 
+
+            }
+         }
+        else
         {
-            EntradaYSalida.mostrarMensaje("\n"+"["+(i+1)+"] "
-                + "||Nombre del duenio: " + listaTurnoGato.get(i).getDuenio().getNombre()
-                + "||Telefono: " + listaTurnoGato.get(i).getDuenio().getNumeroContacto()
-                + "||Tipo de animal: " + listaTurnoGato.get(i).getAnimal().getTipo()
-                + "||Nombre del animal: " + listaTurnoGato.get(i).getAnimal().getNombre()
-                + "||Hora: " + listaTurnoGato.get(i).getHora());
-
-
+          EntradaYSalida.mostrarMensaje("\n---Lista vacia\n");
+          EntradaYSalida.leerCadena("\n\nPresione cualquier tecla para salir ");
         }
         
+        return estado;
+        
     }
-    public void mostrarListaTurnoTortuga()
+    public boolean mostrarListaTurnoTortuga()
     {
-        EntradaYSalida.mostrarMensaje("\n---Lista de turnos de tortugas---\n");
+        boolean estado = false;
+       
+        if (!listaTurnoTortuga.isEmpty())
+         {
+            estado = true;
+            EntradaYSalida.mostrarMensaje("\n---Lista de turnos de tortugas---\n");
 
-        for (int i = 0; i < listaTurnoTortuga.size(); i++) 
-        {
-            EntradaYSalida.mostrarMensaje("\n"+"["+(i+1)+"] "
-                + "||Nombre del duenio: " + listaTurnoTortuga.get(i).getDuenio().getNombre()
-                + "||Telefono: " + listaTurnoTortuga.get(i).getDuenio().getNumeroContacto()
-                + "||Tipo de animal: " + listaTurnoTortuga.get(i).getAnimal().getTipo()
-                + "||Nombre del animal: " + listaTurnoTortuga.get(i).getAnimal().getNombre()
-                + "||Hora: " + listaTurnoTortuga.get(i).getHora());
+            for (int i = 0; i < listaTurnoTortuga.size(); i++) 
+            {
+                EntradaYSalida.mostrarMensaje("\n"+"["+(i+1)+"] "
+                    + "||Nombre del duenio: " + listaTurnoTortuga.get(i).getDuenio().getNombre()
+                    + "||Telefono: " + listaTurnoTortuga.get(i).getDuenio().getNumeroContacto()
+                    + "||Tipo de animal: " + listaTurnoTortuga.get(i).getAnimal().getTipo()
+                    + "||Nombre del animal: " + listaTurnoTortuga.get(i).getAnimal().getNombre()
+                    + "||Hora: " + listaTurnoTortuga.get(i).getHora());
 
-        }
+            }
+         }
+         else
+          {
+            EntradaYSalida.mostrarMensaje("\n---Lista vacia\n");
+            EntradaYSalida.leerCadena("\n\nPresione cualquier tecla para salir ");
+          }
+        
+        return estado;
         
     }
     
-    public void mostrarListaTurnoCanario()
+    public boolean mostrarListaTurnoCanario()
     {
-        EntradaYSalida.mostrarMensaje("\n---Lista de turnos de canarios---\n");
+       boolean estado = false;
+       
+        if (!listaTurnoCanario.isEmpty())
+         {
+            estado = true;
+            EntradaYSalida.mostrarMensaje("\n---Lista de turnos de canarios---\n");
 
-        for (int i = 0; i < listaTurnoCanario.size(); i++) 
-        {
-            EntradaYSalida.mostrarMensaje("\n"+"["+(i+1)+"] "
-                + "||Nombre del duenio: " + listaTurnoCanario.get(i).getDuenio().getNombre()
-                + "||Telefono: " + listaTurnoCanario.get(i).getDuenio().getNumeroContacto()
-                + "||Tipo de animal: " + listaTurnoCanario.get(i).getAnimal().getTipo()
-                + "||Nombre del animal: " + listaTurnoCanario.get(i).getAnimal().getNombre()
-                + "||Hora: " + listaTurnoCanario.get(i).getHora());
+            for (int i = 0; i < listaTurnoCanario.size(); i++) 
+            {
+                EntradaYSalida.mostrarMensaje("\n"+"["+(i+1)+"] "
+                    + "||Nombre del duenio: " + listaTurnoCanario.get(i).getDuenio().getNombre()
+                    + "||Telefono: " + listaTurnoCanario.get(i).getDuenio().getNumeroContacto()
+                    + "||Tipo de animal: " + listaTurnoCanario.get(i).getAnimal().getTipo()
+                    + "||Nombre del animal: " + listaTurnoCanario.get(i).getAnimal().getNombre()
+                    + "||Hora: " + listaTurnoCanario.get(i).getHora());
 
-        }
+            }
+         }
+         else
+          {
+            EntradaYSalida.mostrarMensaje("\n---Lista vacia\n");
+            EntradaYSalida.leerCadena("\n\nPresione cualquier tecla para salir ");
+          }
+        
+        return estado;
         
     }
     

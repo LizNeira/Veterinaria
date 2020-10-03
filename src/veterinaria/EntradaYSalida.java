@@ -4,7 +4,6 @@ import static java.lang.Character.toUpperCase;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class EntradaYSalida
@@ -65,7 +64,7 @@ public class EntradaYSalida
        
         do
         {
-            System.out.print("Ingrese la hora (HH:mm): ");
+            System.out.print("Ingrese la hora EJEM: 9:30 o 15:30 (HH:mm): ");
             hora =entrada.nextLine();
           
             try
@@ -88,15 +87,7 @@ public class EntradaYSalida
    
     public static Date validarHora(String horaValidar) throws ParseException, Exception
      {
-        
-          /*Los turnos se dan desde las 9hs hasta las 18hs en
-         intervalos de 30 minutos y con un receso de 12hs a 13.30hs*/
-        
-         /* 9:15 */
-         
-         /* 9 a 12 y de 13:30 18 */
-         /* 9, 9:30, ...*/
-         
+            
         Date hora = null;
         try
         {
@@ -131,15 +122,16 @@ public class EntradaYSalida
                  && horaFinSegundoBloque.compareTo(hora) >= 0 
                )
                {
-                long diferenciaMinutos =  (hora.getTime() - horaIniPrimerBloque.getTime()) / 1000 / 60;
-                if ( diferenciaMinutos % 30 > 0 )
+                   long diferenciaMinutos = (hora.getTime() - horaIniPrimerBloque.getTime()) / 1000 / 60;
+                   if (diferenciaMinutos % 30 > 0) 
+                   {
+                       throw new Exception("Error: Los horarios se deben asignar cada 30 minutos");
+                   }
+               }
+            else
                 {
-                    throw new Exception("Error: Los horarios se deben asignar cada 30 minutos");
+                        throw new Exception("Hora sin atencion al publico");
                 }
-            }
-            else{
-                    throw new Exception("Hora sin atencion al publico");
-            }
         }
         catch(ParseException e)
         {

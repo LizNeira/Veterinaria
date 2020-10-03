@@ -102,12 +102,9 @@ public class Veterinario extends Empleado implements Serializable
     
     private void atenderTurno(Sistema sistema)
     {
-        String opcion;
         String mensaje;
         String especialidad;
-    
-       do 
-       {       
+           
                         mensaje = ("\n---Especialidad---\n"
                                     + "[1] Gato\n"
                                     + "[2] Perro\n"
@@ -119,7 +116,7 @@ public class Veterinario extends Empleado implements Serializable
 	     switch (especialidad)
              {
                     case "1":
-                            atenderEspecialidadGato(sistema);
+                            atenderEspecialidadGato(sistema);                            
                         break;
                     case "2":
                             atenderEspecialidadPerro(sistema);
@@ -130,34 +127,33 @@ public class Veterinario extends Empleado implements Serializable
                     case "4":
                             atenderEspecialidadTortuga(sistema);
                         break;
-             }
-            
-          opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
-       
-       } while( opcion.equals("s") || opcion.equals("S"));
+             }                          
     }
     
     private void atenderEspecialidadGato(Sistema sistema)
     {
         int indiceTurno;
         
-            veterinaria.getMostrarListaTurnoGato(sistema);
-            indiceTurno = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
-
-            while(indiceTurno < 0 || indiceTurno > veterinaria.getCantidadTurno("Gato", sistema))
+            if(veterinaria.getMostrarListaTurnoGato(sistema))
             {
-                      indiceTurno = EntradaYSalida.leerEntero("\nOpcion no valida"
-                      + "\nIngrese nuevamente: ");
-            }
+                indiceTurno = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
 
-            veterinaria.atenderAnimal("Gato", indiceTurno, sistema);
+                while(indiceTurno < 0 || indiceTurno > veterinaria.getCantidadTurno("Gato", sistema))
+                {
+                          indiceTurno = EntradaYSalida.leerEntero("\nOpcion no valida"
+                          + "\nIngrese nuevamente: ");
+                }
+
+                veterinaria.atenderAnimal("Gato", indiceTurno, sistema);
+            }
+            
     }
     
     private void atenderEspecialidadPerro(Sistema sistema)
     {
         int indiceTurno;
-     
-            veterinaria.getMostrarListaTurnoPerro(sistema);
+        if(veterinaria.getMostrarListaTurnoPerro(sistema))
+         {
             indiceTurno = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
 
             while(indiceTurno < 0 || indiceTurno > veterinaria.getCantidadTurno("Perro", sistema))
@@ -167,40 +163,42 @@ public class Veterinario extends Empleado implements Serializable
             }
 
             veterinaria.atenderAnimal("Perro", indiceTurno, sistema);
-    
+         }
     }
 
     private void atenderEspecialidadCanario(Sistema sistema)
     {
         int indiceTurno;
      
-            veterinaria.getMostrarListaTurnoCanario(sistema);
-            indiceTurno = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
-
-            while(indiceTurno < 0 || indiceTurno > veterinaria.getCantidadTurno("Canario", sistema))
+            if(veterinaria.getMostrarListaTurnoCanario(sistema))
             {
-                      indiceTurno = EntradaYSalida.leerEntero("\nOpcion no valida"
-                      + "\nIngrese nuevamente: ");
-            }
+                indiceTurno = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
 
-            veterinaria.atenderAnimal("Canario", indiceTurno, sistema);
+                while(indiceTurno < 0 || indiceTurno > veterinaria.getCantidadTurno("Canario", sistema))
+                {
+                          indiceTurno = EntradaYSalida.leerEntero("\nOpcion no valida"
+                          + "\nIngrese nuevamente: ");
+                }
 
+                veterinaria.atenderAnimal("Canario", indiceTurno, sistema);
+             }
     }
     
     private void atenderEspecialidadTortuga(Sistema sistema)
     {
         int indiceTurno;
-
-            veterinaria.getMostrarListaTurnoTortuga(sistema);
-            indiceTurno = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
-
-            while(indiceTurno < 0 || indiceTurno > veterinaria.getCantidadTurno("Tortuga", sistema))
+            
+            if(veterinaria.getMostrarListaTurnoTortuga(sistema))
             {
-                      indiceTurno = EntradaYSalida.leerEntero("\nOpcion no valida"
-                      + "\nIngrese nuevamente: ");
-            }
+                indiceTurno = EntradaYSalida.leerEntero("\n\nIngrese una opción: ");
 
-            veterinaria.atenderAnimal("Tortuga", indiceTurno, sistema);
-      
+                while(indiceTurno < 0 || indiceTurno > veterinaria.getCantidadTurno("Tortuga", sistema))
+                {
+                          indiceTurno = EntradaYSalida.leerEntero("\nOpcion no valida"
+                          + "\nIngrese nuevamente: ");
+                }
+
+                veterinaria.atenderAnimal("Tortuga", indiceTurno, sistema);
+            }  
     }
 }

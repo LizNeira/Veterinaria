@@ -105,17 +105,15 @@ public class Recepcionista extends Empleado implements Serializable
            }
            
            hora = EntradaYSalida.leerHora();
-//         if(horarioDisponible(hora,especialidad,sistema))
-//           {
-               
-  
-            veterinaria.setTurno(nombreDuenio, numeroContacto, tipoAnimal, nombreAnimal, sistema,hora);
-//           }
-//          else
-//           {
-//                  
-//           }
-            EntradaYSalida.mostrarMensaje("\nSe ha dado el turno\n");
+           if(veterinaria.esHorarioDisponible(hora, tipoAnimal, sistema))
+           {
+               veterinaria.setTurno(nombreDuenio, numeroContacto, tipoAnimal, nombreAnimal, sistema, hora);
+               EntradaYSalida.mostrarMensaje("\nSe ha dado el turno\n");
+           }
+          else
+           {
+              EntradaYSalida.mostrarMensaje("\nYa esta el turno asignado en ese horario\n");    
+           }
             opcion = EntradaYSalida.leerCadena("\nDesea continuar[s/n]?: ");
 
         } while (opcion.equals("s") || opcion.equals("S")); 
